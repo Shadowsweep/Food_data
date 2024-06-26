@@ -18,6 +18,9 @@ BestFoodFinder is a Django web application that helps users discover the best fo
 - Python 3.8+
 - Django 3.2+
 
+## SQLite Database
+
+![image](https://github.com/Shadowsweep/Food_data/assets/122604770/b4231638-1404-4082-808e-ec78477441e8)
 
 
 ## 1. Search Functionality
