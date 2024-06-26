@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Food Records</title>
+</head>
+<body>
+    <h1>Food Records</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Items</th>
+                <th>Latitude/Longitude</th>
+                <th>Full Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in foods %}
+                <tr>
+                    <td>{{ food.food_id }}</td>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.location }}</td>
+                    <td>{{ food.items }}</td>
+                    <td>{{ food.lat_long }}</td>
+                    <td>{{ food.full_details }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    table, th, td {
+        border: 1px solid black;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>    
