@@ -556,8 +556,12 @@ border-radius: 4px;
 }
 
 .report-topic-heading, .items {
-    display: flex;
-    flex-direction: row;
+    {% comment %} display: flex;
+    flex-direction: row; {% endcomment %}
+	    display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
 }
 
 .report-topic-heading {
@@ -574,10 +578,21 @@ border-radius: 4px;
 .t-op, .t-op-nextlvl {
     flex: 1;
     padding: 5px 10px;
+	text-align: center;
 }
 
 .t-op-nextlvl {
     font-size: 14px;
+	flex: 1;
+        text-align: center;
+}
+.view-menu-btn {
+	width: 100%;
+	max-width: 120px;
+}
+
+.hidden {
+	display: none;
 }
 <style>
 	.t-op-nextlvl {
@@ -845,10 +860,11 @@ menuicn.addEventListener("click", () => {
 									
 								</h3> {% endcomment %}
 								<h3 class="t-op-nextlvl">
-									<button class="btn btn-primary" onclick="showItemsPopup('{{ food.food_id }}', '{{ food.items|escapejs }}')">
+									<button class="btn btn-primary view-mneu-btn" onclick="showItemsPopup('{{ food.food_id }}', '{{ food.items|escapejs }}')">
 										View Menu
 									</button>
 								</h3>
+								
 
 								<h3 class="t-op-nextlvl"style='text-decoration:none;' >
 									<a href="https://www.google.com/maps/search/?api=1&query={{ food.lat_long }}" target="_blank" rel="noopener noreferrer">
@@ -856,19 +872,7 @@ menuicn.addEventListener("click", () => {
 									</a>
 								</h3>
 								
-								{% comment %} <h3 class="t-op-nextlvl"  >{{ food.full_details }}</h3> {% endcomment %}
-								{% comment %} <h3 class="t-op-nextlvl">
-									{% with full_details=food.full_details|safe %}
-										{% with details=full_details|json_script:"food-details" %}
-											<script>
-												var detailsJson = JSON.parse(document.getElementById('food-details').textContent);
-												document.write(detailsJson.cuisines);
-											</script>
-										{% endwith %}
-									{% endwith %}
-								</h3> {% endcomment %}
-								
-								 {% comment %} <h3 class="t-op-nextlvl">{{ food.cuisines }}</h3> {% endcomment %}
+				
                                  
 								
 							</div>
