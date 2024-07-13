@@ -8,6 +8,7 @@ from django.contrib import messages
 from .models import Food
 from io import TextIOWrapper
 
+
 # def upload_csv(request):
 #     if request.method == 'POST':
 #         form = CSVUploadForm(request.POST, request.FILES)
@@ -41,12 +42,12 @@ def upload_csv(request):
         if form.is_valid():
             csv_file = request.FILES['csv_file']
             try:
-                # Save the CSV file to the static/uploads directory
+                
                 fs = FileSystemStorage(location='static/uploads')
                 filename = fs.save(csv_file.name, csv_file)
                 csv_file_path = fs.path(filename)
 
-                # Assuming UTF-8 encoding, adjust if necessary
+                
                 with open(csv_file_path, encoding='utf-8') as file:
                     reader = csv.DictReader(file)
                     for row in reader:
@@ -80,11 +81,39 @@ def display_food(request):
     
     context = {
         'foods': foods,
-        # ... other context variables ...
     }
     return render(request, 'search_food.html', {'foods': foods})
 def view_food(request):
-    foods = Food.objects.all()  # Fetch all food records from the database\
+    foods = Food.objects.all()
     
     return render(request, 'upload_form.html', {'foods': foods})
+
+
+
+def locationbtm_food(request):
+    # foods = Food.objects.all()  # Fetch all food records from the database\
+    
+    foods = Food.objects.all()
+    # location = request.get('location')
+    location = Food.objects.filter(location='BTM')
+    print(location)
+    foods = Food.objects.filter()
+    print(foods)
+    for food in foods:
+        full_details = json.loads(food.full_details)
+        food.cuisines = full_details.get('cuisines', '')
+        
+    
+    context = {
+        'foods': foods,
+    }
+    return render(request, 'search_food.html', {'foods': foods})
+
+
+
+# def view_food(request):
+#     foods = Food.objects.filter("")
+    
+#     return render(request, 'upload_form.html', {'foods': foods})
+
 
